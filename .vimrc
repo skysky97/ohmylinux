@@ -16,7 +16,7 @@ set cmdheight=1
 " ----------------------------------------------------------------------------{{{}}}
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn --install --frozen-lockfile'}
-Plug 'altercation/vim-colors-solarized'
+Plug 'skysky97/vim-colors-solarized'
 Plug 'seebi/dircolors-solarized'
 call plug#end()
 " }}}
