@@ -1,3 +1,9 @@
 [submodule ".vim/vim-plug"]
 	path = .vim/vim-plug
 	url = https://github.com/junegunn/vim-plug
+[submodule "dircolors-solarized"]
+	path = dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized
+[submodule "vim-colors-solarized"]
+	path = vim-colors-solarized
+	url = https://github.com/skysky97/vim-colors-solarized
