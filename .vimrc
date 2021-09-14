@@ -1,9 +1,6 @@
 " Name:     vim configuration
 " Author:   liyunting<pourlove@msn.cn>
 " URL:      https://github.com/skysky97/ohmyvim
-" 
-" Good luck, have fun.
-"
 
 " Generic {{{
 " ----------------------------------------------------------------------------
@@ -23,6 +20,11 @@ set cmdheight=1
 " ----------------------------------------------------------------------------{{{}}}
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn --install --frozen-lockfile'}
+Plug 'airblade/vim-gitgutter'
+Plug 'kevinoid/vim-jsonc'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'monkoose/vim9-stargate'
 call plug#end()
 " }}}
 
@@ -124,8 +126,8 @@ nmap <leader>e :Explore<CR>
 
 " Refactor  {{{
 " ----------------------------------------------------------------------------
-nmap <leader>fh <plug>(coc-cursors-word)
-xmap <leader>fh <plug>(coc-cursors-range)
+nmap <leader>fw <plug>(coc-cursors-word)
+xmap <leader>fw <plug>(coc-cursors-range)
 nmap <leader>fR <plug>(coc-refactor)
 nmap <leader>fr <plug>(coc-rename)
 nmap <leader>ff <plug>(coc-format-selected)
@@ -133,4 +135,65 @@ xmap <leader>ff <plug>(coc-format-selected)
 nmap <leader>fq <plug>(coc-fix-current)
 " }}}
 
+" Selection  {{{
+" ----------------------------------------------------------------------------
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" }}}
+
+" Completion  {{{
+" ----------------------------------------------------------------------------
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" use ctrl+l for trigger completion
+inoremap <silent><expr> <c-l> coc#refresh()
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" }}}
+
+" Snippets {{{
+" ----------------------------------------------------------------------------
+
+" }}}
+
+" vim9-stargate {{{
+" ----------------------------------------------------------------------------
+noremap gs <Cmd>call stargate#ok_vim(1)<CR>
+noremap gS <Cmd>call stargate#ok_vim(2)<CR>
+"autocmd ColorScheme * 
+"  \ hi link StargateMain Special |
+"  \ hi link StargateSecondary Type
+" }}}
+
+" End  {{{
+" ----------------------------------------------------------------------------
 " vim:foldmethod=marker:foldlevel=0
+" }}}
+
