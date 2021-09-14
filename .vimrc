@@ -119,7 +119,8 @@ nmap fA :CocList -I grep -e<CR>
 " explore outline
 nmap fo :CocList outline<CR>
 " explore project
-nmap fe :CocList explorer --quit-on-open<CR>
+nmap fe :CocCommand explorer --quit-on-open<CR>
+nmap fE :CocCommand explorer --width 80 --quit-on-open<CR>
 " buildin explorer
 nmap <leader>e :Explore<CR>
 " }}}
