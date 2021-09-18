@@ -11,9 +11,12 @@ set nocompatible
 set updatetime=300
 set nobackup
 set nowritebackup
-set directory=~/.cache/vim//
 set laststatus=1
 set cmdheight=1
+if !isdirectory($HOME . "/.cache/vim")
+    call mkdir($HOME . "/.cache/vim")
+endif
+set directory=~/.cache/vim//
 " }}}
 
 " Plugin {{{
@@ -40,7 +43,7 @@ set smartindent
 set expandtab
 set tabstop=4
 set shiftwidth=4
-set backspace=indent,eol,nostop
+set backspace=indent,eol,start
 " }}}
 
 " Color & Theme {{{
