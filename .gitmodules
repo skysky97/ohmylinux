@@ -1,4 +1,4 @@
-[submodule "vim/vim/vim-plug"]
+[submodule "vim-plug"]
 	path = vim/vim/vim-plug
 	url = https://github.com/junegunn/vim-plug
 [submodule "dircolors-solarized"]
@@ -7,3 +7,6 @@
 [submodule "vim-colors-solarized"]
 	path = vim-colors-solarized
 	url = https://github.com/skysky97/vim-colors-solarized
+[submodule "tmux-resurrect"]
+	path = tmux/tmux/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
