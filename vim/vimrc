@@ -20,7 +20,7 @@ set directory=~/.cache/vim//
 " }}}
 
 " Plugin {{{
-" ----------------------------------------------------------------------------{{{}}}
+" ----------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn --install --frozen-lockfile'}
 Plug 'airblade/vim-gitgutter'
@@ -44,29 +44,35 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set backspace=indent,eol,start
+set ruler
 " }}}
 
 " Color & Theme {{{
 " ----------------------------------------------------------------------------
-set t_Co=16
-set background=dark
-let g:solarized_termcolors=16
-let g:solarized_termtrans=0
-colorscheme solarized
-" coc semantic highlight
-let g:coc_default_semantic_highlight_groups=1
 autocmd ColorScheme * :call <SID>do_highlight()
 function! s:do_highlight()
-  " overwrite float window color
+  " float window
   hi Pmenu cterm=none ctermfg=Cyan ctermbg=Black
   hi PmenuSbar cterm=none ctermfg=Cyan ctermbg=DarkGray
   hi Property cterm=none ctermfg=Magenta
+  " coc semantic tokens
   hi link CocSem_property Property
   hi link CocSem_namespace Normal
   hi link CocSem_variable Normal
   hi link CocSem_parameter Normal
   hi link CocSem_operator Type
+  " vim9-stargate
+  hi link StargateMain Special
+  hi link StargateSecondary Type
 endfunction
+
+set t_Co=16
+set background=dark
+" coc semantic highlight
+let g:coc_default_semantic_highlight_groups=1
+let g:solarized_termcolors=16
+let g:solarized_termtrans=0
+colorscheme solarized
 " }}}
 
 " Navigation {{{
@@ -191,9 +197,6 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 " ----------------------------------------------------------------------------
 noremap gs <Cmd>call stargate#ok_vim(1)<CR>
 noremap gS <Cmd>call stargate#ok_vim(2)<CR>
-"autocmd ColorScheme * 
-"  \ hi link StargateMain Special |
-"  \ hi link StargateSecondary Type
 " }}}
 
 " End  {{{
