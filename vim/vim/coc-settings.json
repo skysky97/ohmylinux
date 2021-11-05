@@ -1,0 +1,15 @@
+{
+    "coc.preferences.semanticTokensHighlights": false,
+    "coc.preferences.enableMarkdown": true,
+
+    "clangd.enabled": true,
+    "clangd.semanticHighlighting": false,
+
+    "list.height": 15,
+    "list.limitLines": 200,
+    "list.source.files.filterByName": true,
+    "list.source.mru.filterByName": true,
+
+    "git.addGBlameToBufferVar": true,
+    "git.enableGutters": true
+}

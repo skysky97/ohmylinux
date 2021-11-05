@@ -199,6 +199,31 @@ noremap gs <Cmd>call stargate#ok_vim(1)<CR>
 noremap gS <Cmd>call stargate#ok_vim(2)<CR>
 " }}}
 
+" coc.nvim {{{
+" ----------------------------------------------------------------------------
+let g:coc_global_extensions = [
+            \"coc-clangd",
+            \"coc-cmake",
+            \"coc-explorer",
+            \"coc-git",
+            \"coc-highlight",
+            \"coc-java",
+            \"coc-jedi",
+            \"coc-json",
+            \"coc-lists",
+            \"coc-marketplace",
+            \"coc-rls",
+            \"coc-sh",
+            \"coc-snippets",
+            \"coc-todolist",
+            \"coc-tsserver",
+            \"coc-ultisnips",
+            \"coc-vimlsp",
+            \"coc-word",
+            \"coc-xml"
+            \]
+" }}}
+
 " End  {{{
 " ----------------------------------------------------------------------------
 " vim:foldmethod=marker:foldlevel=0
