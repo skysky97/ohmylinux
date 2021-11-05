@@ -13,6 +13,7 @@ set nobackup
 set nowritebackup
 set laststatus=1
 set cmdheight=1
+set mouse=a
 " Set cache directory, '//' means include folders into swap file name which
 " avoid file name conflict.
 if !isdirectory($HOME . "/.cache/vim")
@@ -55,10 +56,12 @@ autocmd FileType cpp setlocal commentstring=//%s
 " ----------------------------------------------------------------------------
 autocmd ColorScheme * :call <SID>do_highlight()
 function! s:do_highlight()
+  set t_Co=16
   " float window
   hi Pmenu cterm=none ctermfg=Cyan ctermbg=Black
   hi PmenuSbar cterm=none ctermfg=Cyan ctermbg=DarkGray
   hi Property cterm=none ctermfg=Magenta
+  hi ToolBarLine cterm=none ctermfg=Cyan ctermbg=DarkGray
   " coc semantic tokens
   hi link CocSem_property Property
   hi link CocSem_namespace Normal
@@ -262,6 +265,18 @@ nmap gb :call <SID>gitblame()<CR>
 function! s:gitblame()
     echo get(b:, 'coc_git_blame', '')
 endfunction
+" }}}
+
+" Termdebug {{{
+" ----------------------------------------------------------------------------
+nmap <silent> <leader>d :packadd termdebug<CR>:Termdebug<CR>
+nmap <F5>       :Continue<CR>
+nmap <F10>      :Over<CR>
+nmap <F11>      :Step<CR>
+nmap <F9>       :Break<CR>
+nmap <S-F9>     :Clear<CR>
+nmap <S-F5>     :Stop<CR>
+nmap <C-S-F5>   :Run<CR>
 " }}}
 
 " End  {{{
