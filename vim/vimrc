@@ -132,6 +132,7 @@ nmap <Space>S :CocList -I symbols<CR>
 nmap <Space>/ :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
 " search word in cwd
 nmap <Space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep -w'<CR>
+nmap <Space>W :CocList -I grep -w<CR>
 nmap <Space>a :CocList -I grep -e<CR>
 " explore outline
 nmap <Space>o :CocList outline<CR>
@@ -250,9 +251,10 @@ xmap ig <Plug>(coc-git-chunk-inner)
 omap ag <Plug>(coc-git-chunk-outer)
 xmap ag <Plug>(coc-git-chunk-outer)
 
-nmap <Space>l :CocList bcommits<CR>
-nmap <Space>L :CocList commits<CR>
-nmap <Space>g :CocList gstatus<CR>
+nmap <Space>gl :CocList bcommits<CR>
+nmap <Space>gL :CocList commits<CR>
+nmap <Space>gs :CocList gstatus<CR>
+nmap <Space>gf :CocList gfiles 
 
 " show commit contains current position
 nmap gm <Plug>(coc-git-commit)
