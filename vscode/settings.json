@@ -1,0 +1,80 @@
+{
+    "window.zoomLevel": -1.25,
+    "window.closeWhenEmpty": true,
+    "window.title": "${rootPath}",
+
+    "workbench.colorTheme": "Solarized Custom Dark",
+    "workbench.list.keyboardNavigtion": "filter",
+
+    "editor.cursorStyle": "line",
+    "editor.cursorBlinking": "solid",
+    "editor.fontLigatures": false,
+    "editor.fontFamily": "Cascadia Mono",
+    "editor.fontSize": 14,
+    "editor.fontWeight": "450",
+    "editor.lineNumbers": "on",
+    "editor.lineHeight": 17,
+    "editor.wordWrap": "off",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.minimap.enabled": false,
+    "editor.renderLineHighlight": "gutter",
+    "editor.renderControlCharacters": true,
+    "editor.semanticHighlighting.enabled": true,
+    "editor.suggestSelection": "first",
+
+    "explorer.enableDragAndDrop": false,
+   
+    "outline.showBooleans": false,
+    "outline.showArrays": false, 
+    "outline.showConstants": false,
+    "outline.showEnumMembers": false,
+    "outline.showEnums": false,
+    "outline.showEvents": false,
+    "outline.showFields": false,
+    "outline.showKeys": false,
+    "outline.showNumbers": false,
+    "outline.showObjects": false,
+    "outline.showStrings": false,
+    "outline.showTypeParameters": false,
+    "outline.showVariables": false,
+
+    "terminal.intergrated.copyOnSelection": true,
+    "terminal.intergrated.rightClickBehavior": "paste",
+    "terminal.intergrated.tabs.enabled": true,
+    "terminal.intergrated.tabs.location": "left",
+    "terminal.intergrated.scrollback": "100000",
+    "terminal.intergrated.gpuAcceleration": "off",
+    
+    "zenMode.fullScreen": false,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.centerLayout": false,
+    "zenMode.hideStatusBar": false,
+
+    "vim.easymotion": true,
+    "vim.normalModeKeyBindings": [
+        { "before": ["space", "e"],     "commands": [ "workbench.view.explorer" ] },
+        { "before": ["space", "o"],     "commands": [ "outline.focus" ] },
+        { "before": ["space", "a"],     "commands": [ "workbench.view.search.focus" ] },
+        { "before": ["space", "z"],     "commands": [ "workbench.action.toggleZenMode" ] },
+        { "before": ["space", "t"],     "commands": [ "workbench.action.task.runTask" ] },
+        { "before": ["space", "s"],     "commands": [ "workbench.action.showAllSymbols" ] },
+        { "before": ["leader", "d"],    "commands": [ "workbench.action.debug.selectandstart" ] },
+        { "before": ["g", "f"],         "commands": [ "clangd.switchheadersource" ] }
+    ],
+
+    "C_Cpp.autocomplete": "Disabled",
+    "C_Cpp.intelliSenseEngine": "Disabled",
+    "C_Cpp.intelliSenseUpdateDelay": 1000,
+    "C_Cpp.default.cStandard": "c99",
+    "C_Cpp.default.cppStandard": "c++17",
+
+    "clangd.path": "/usr/local/bin/clangd",
+
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.enabled": false,
+    "gitlens.blame.heatmap.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.statusBar.alignment": "left",
+    "gitlens.changes.locations": [ "gutter", "overview" ]
+}
