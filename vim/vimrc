@@ -1,7 +1,7 @@
 " Name:     vim configuration
 " Author:   liyunting<pourlove@msn.cn>
-" URL:      https://github.com/skysky97/ohmyvim
-
+" URL:      https://github.com/skysky97/ohmylinux
+"
 " Generic {{{
 " ----------------------------------------------------------------------------
 syntax enable
@@ -13,17 +13,20 @@ set nobackup
 set nowritebackup
 set laststatus=1
 set cmdheight=1
+" Set cache directory, '//' means include folders into swap file name which
+" avoid file name conflict.
 if !isdirectory($HOME . "/.cache/vim")
     call mkdir($HOME . "/.cache/vim")
 endif
 set directory=~/.cache/vim//
+nnoremap <Space> <Nop>
 " }}}
 
 " Plugin {{{
 " ----------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn --install --frozen-lockfile'}
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 Plug 'kevinoid/vim-jsonc'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -45,6 +48,7 @@ set tabstop=4
 set shiftwidth=4
 set backspace=indent,eol,start
 set ruler
+autocmd FileType cpp setlocal commentstring=//%s
 " }}}
 
 " Color & Theme {{{
@@ -84,10 +88,12 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " switch c/c++ source header
 nmap <silent> gf :CocCommand clangd.switchSourceHeader<CR>
+" switch buffers
+nmap <silent> gn :bprev<CR>
+nmap <silent> gp :bnext<CR>
 " coc-lists pre/next
 nnoremap <silent><nowait> gj :<C-u>CocNext<CR>
 nnoremap <silent><nowait> gk :<C-u>CocPrev<CR>
-nnoremap <silent><nowait> gp :<C-u>CocListResume<CR>
 " show documentation in preview window.
 nnoremap <silent> gh :call <SID>show_documentation()<CR>
 function! s:show_documentation()
@@ -116,20 +122,23 @@ endif
 " search file
 nmap <C-p> :CocList files<CR>
 " search recently opened file
-nmap ff :CocList mru<CR>
+nmap <Space>m :CocList mru<CR>
+nmap <Space>b :CocList buffers<CR>
+nmap <Space>B :buffers<CR>:buffer
 " search semantic symbol
-nmap fs :CocList -I symbols<CR>
+nmap <Space>s :exe 'CocList -I --normal --input='.expand('<cword>').' symbols'<CR>
+nmap <Space>S :CocList -I symbols<CR>
 " search word in current buffer
-nmap fw :CocList -I words<CR>
+nmap <Space>/ :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
 " search word in cwd
-nmap fa :CocList -I grep -w<CR>
-" search word in cwd by regex
-nmap fA :CocList -I grep -e<CR>
+nmap <Space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep -w'<CR>
+nmap <Space>a :CocList -I grep -e<CR>
 " explore outline
-nmap fo :CocList outline<CR>
+nmap <Space>o :CocList outline<CR>
 " explore project
-nmap fe :CocCommand explorer --quit-on-open<CR>
-nmap fE :CocCommand explorer --width 80 --quit-on-open<CR>
+nmap <Space>e :CocCommand explorer --quit-on-open<CR>
+nmap <Space>E :CocCommand explorer --width 80 --quit-on-open<CR>
+nnoremap <silent><nowait> <Space>p :<C-u>CocListResume<CR>
 " buildin explorer
 nmap <leader>e :Explore<CR>
 " }}}
@@ -222,6 +231,35 @@ let g:coc_global_extensions = [
             \"coc-word",
             \"coc-xml"
             \]
+" }}}
+
+" git {{{
+" ----------------------------------------------------------------------------
+" navigate chunks of current buffer
+nmap <leader>hk <Plug>(coc-git-prevchunk)
+nmap <leader>hj <Plug>(coc-git-nextchunk)
+nmap <leader>hu :CocCommand git.chunkUndo<CR>
+nmap <leader>hs :CocCommand git.chunkStage<CR>
+nmap <leader>hi <Plug>(coc-git-chunkinfo)
+" navigate conflicts of current buffer
+nmap <leader>ck <Plug>(coc-git-prevconflict)
+nmap <leader>cj <Plug>(coc-git-nextconflict)
+" create text object for git chunks
+omap ig <Plug>(coc-git-chunk-inner)
+xmap ig <Plug>(coc-git-chunk-inner)
+omap ag <Plug>(coc-git-chunk-outer)
+xmap ag <Plug>(coc-git-chunk-outer)
+
+nmap <Space>l :CocList bcommits<CR>
+nmap <Space>L :CocList commits<CR>
+nmap <Space>g :CocList gstatus<CR>
+
+" show commit contains current position
+nmap gm <Plug>(coc-git-commit)
+nmap gb :call <SID>gitblame()<CR>
+function! s:gitblame()
+    echo get(b:, 'coc_git_blame', '')
+endfunction
 " }}}
 
 " End  {{{
